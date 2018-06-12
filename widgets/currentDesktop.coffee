@@ -1,16 +1,27 @@
-command: "echo $(/opt/local/bin/chunkc tiling::query -d id)"
+command: "echo $(x=$(/opt/local/bin/chunkc tiling::query -d id);echo $(/opt/local/bin/chunkc tiling::query -D $(/opt/local/bin/chunkc tiling::query -M $x))\",$x\")"
 
 refreshFrequency: 1000
 
 render: (output) ->
-  """
-    <div class="currentDesktop-container">
+  values = output.split(',')
+  spaces = values[0].split(' ')
+
+  htmlString = """
+    <div class="currentDesktop-container" data-count="#{spaces.length}">
       <ul>
-        <li id="desktop1"><img src="./assets/icons/utilities-terminal-symbolic.svg" /></li>
-        <li id="desktop2"><img src="./assets/icons/system-file-manager-symbolic.svg" /></li>
-        <li id="desktop3"><img src="./assets/icons/firefox-symbolic.svg" /></li>
-        <li id="desktop4"><img src="./assets/icons/code.svg" /></li>
-        <li id="desktop5"><img src="./assets/icons/multimedia-audio-player.svg" /></li>
+  """
+
+  for i in [0..spaces.length - 1]
+    icon = ""
+    switch spaces[i]
+        when '1' then icon = "./assets/icons/code.svg"
+        when '2' then icon = "./assets/icons/system-file-manager-symbolic.svg"
+        when '3' then icon = "./assets/icons/firefox-symbolic.svg"
+        when '5' then icon = "./assets/icons/multimedia-audio-player.svg"
+        else icon = "./assets/icons/utilities-terminal-symbolic.svg"
+    htmlString += "<li id=\"desktop#{spaces[i]}\"><img src=\"#{icon}\" /></li>"
+
+  htmlString += """
       <ul>
     </div>
   """
@@ -41,12 +52,25 @@ style: """
 """
 
 update: (output, domEl) ->
-  if ($(domEl).find('li.active').id isnt output)
-    $(domEl).find('li.active').removeClass('active')
-    $(domEl).find('li#desktop' + output).addClass('active')
+  values = output.split(',')
+  spaces = values[0].split(' ')
+  space = values[1]
 
-  $('#desktop1').on "click", => @run "/opt/local/bin/qes -k 'cmd + alt - 1'"
-  $('#desktop2').on "click", => @run "/opt/local/bin/qes -k 'cmd + alt - 2'"
-  $('#desktop3').on "click", => @run "/opt/local/bin/qes -k 'cmd + alt - 3'"
-  $('#desktop4').on "click", => @run "/opt/local/bin/qes -k 'cmd + alt - 4'"
-  $('#desktop5').on "click", => @run "/opt/local/bin/qes -k 'cmd + alt - 5'"
+  htmlString = ""
+  for i in [0..spaces.length - 1]
+    icon = ""
+    switch spaces[i]
+        when '1' then icon = "./assets/icons/code.svg"
+        when '2' then icon = "./assets/icons/system-file-manager-symbolic.svg"
+        when '3' then icon = "./assets/icons/firefox-symbolic.svg"
+        when '5' then icon = "./assets/icons/multimedia-audio-player.svg"
+        else icon = "./assets/icons/utilities-terminal-symbolic.svg"
+    htmlString += "<li id=\"desktop#{spaces[i]}\"><img src=\"#{icon}\" /></li>"
+
+  if ($(domEl).find('.currentDesktop-container').attr('data-count') != spaces.length.toString())
+     $(domEl).find('.currentDesktop-container').attr('data-count', "#{spaces.length}")
+     $(domEl).find('ul').html(htmlString)
+     $(domEl).find("li#desktop#{space}").addClass('active')
+  else
+    $(domEl).find('li.active').removeClass('active')
+    $(domEl).find("li#desktop#{space}").addClass('active')
