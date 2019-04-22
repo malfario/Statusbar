@@ -2,7 +2,7 @@ icons: [
   "fab fa-chrome"
   "fas fa-folder"
   "fas fa-envelope"
-  "fab fa-spotify"
+  "fas fa-headphones-alt"
   "fas fa-rss"
   "fas fa-code"
   "fas fa-desktop"
