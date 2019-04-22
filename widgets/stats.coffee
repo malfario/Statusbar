@@ -69,9 +69,8 @@ update: (output, domEl) ->
   free = values[4].replace(/[^0-9]/g,'')
 
   # create an HTML string to be displayed by the widget
-  htmlString =  @getNetTraffic(down, up) + "<span>&nbsp⎢&nbsp</span>" +
-                @getMem(mem) + "<span>&nbsp⎢&nbsp</span>" +
-                @getCPU(cpu) + "<span>&nbsp⎢&nbsp</span>" +
+  htmlString =  @getMem(mem) + "<span>&nbsp;</span>" +
+                @getCPU(cpu) + "<span>&nbsp;&nbsp;&nbsp;</span>" +
                 @getFreeSpace(free)
 
   $(domEl).find('.stats').html(htmlString)

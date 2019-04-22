@@ -1,25 +1,32 @@
-command: "echo $(x=$(/opt/local/bin/chunkc tiling::query -d id);echo $(/opt/local/bin/chunkc tiling::query -D $(/opt/local/bin/chunkc tiling::query -m id))\",$x\")"
+icons: [
+  "fab fa-chrome"
+  "fas fa-folder"
+  "fas fa-envelope"
+  "fab fa-spotify"
+  "fas fa-rss"
+  "fas fa-code"
+  "fas fa-desktop"
+  "fas fa-desktop"
+  "fas fa-desktop"
+  "fas fa-desktop"
+]
 
-refreshFrequency: 1000
+command: "echo $(x=$(/usr/local/bin/chunkc tiling::query -d id);echo $(/usr/local/bin/chunkc tiling::query -D $(/usr/local/bin/chunkc tiling::query -m id))\",$x\")"
+
+refreshFrequency: 500
 
 render: (output) ->
   values = output.split(',')
   spaces = values[0].split(' ')
 
   htmlString = """
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <div class="currentDesktop-container" data-count="#{spaces.length}">
       <ul>
   """
 
   for i in [0..spaces.length - 1]
-    icon = ""
-    switch spaces[i]
-        when '1' then icon = "./assets/icons/code.svg"
-        when '2' then icon = "./assets/icons/system-file-manager-symbolic.svg"
-        when '3' then icon = "./assets/icons/firefox-symbolic.svg"
-        when '5' then icon = "./assets/icons/multimedia-audio-player.svg"
-        else icon = "./assets/icons/utilities-terminal-symbolic.svg"
-    htmlString += "<li id=\"desktop#{spaces[i]}\"><img src=\"#{icon}\" /></li>"
+    htmlString += "<li id=\"desktop#{spaces[i]}\"><span class=\"white fa-sm #{@icons[i]}\"><span/></li>"
 
   htmlString += """
       <ul>
@@ -27,9 +34,8 @@ render: (output) ->
   """
 
 style: """
-  position: relative
+  position: absolute
   margin-top: 5px
-  font: 14px "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
   color: #aaa
   font-weight: 700
 
@@ -41,10 +47,6 @@ style: """
   li
     display: inline
     margin: 0 10px
-
-    img
-      max-height: 20px
-      max-width: 20px
 
   li.active
     color: #ededed
@@ -58,14 +60,7 @@ update: (output, domEl) ->
 
   htmlString = ""
   for i in [0..spaces.length - 1]
-    icon = ""
-    switch spaces[i]
-        when '1' then icon = "./assets/icons/code.svg"
-        when '2' then icon = "./assets/icons/system-file-manager-symbolic.svg"
-        when '3' then icon = "./assets/icons/firefox-symbolic.svg"
-        when '5' then icon = "./assets/icons/multimedia-audio-player.svg"
-        else icon = "./assets/icons/utilities-terminal-symbolic.svg"
-    htmlString += "<li id=\"desktop#{spaces[i]}\"><img src=\"#{icon}\" /></li>"
+    htmlString += "<li id=\"desktop#{spaces[i]}\"><span class=\"white fa-sm #{@icons[i]}\"><span/></li>"
 
   if ($(domEl).find('.currentDesktop-container').attr('data-count') != spaces.length.toString())
      $(domEl).find('.currentDesktop-container').attr('data-count', "#{spaces.length}")

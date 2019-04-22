@@ -15,9 +15,9 @@ style: """
   margin: 0 auto
   margin-top: 6px
   text-align: center
-  font: 14px "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+  font: 12px "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
   color: #a5a5a5
-  font-weight: 700
+  font-weight: 600
 """
 
 update: (output, domEl) ->

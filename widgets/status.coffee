@@ -25,7 +25,8 @@ style: """
   """
 timeAndDate: (date, time) ->
   # returns a formatted html string with the date and time
-  return "<span class='white'><span class='icon'>&nbsp&nbsp;</span>#{date}&nbsp<span> ⎢ </span><span class='icon'>&nbsp;</span>#{time}</span></span>";
+  # return "<span class='white'><span class='icon'>&nbsp&nbsp;</span>#{date}&nbsp<span> ⎢ </span><span class='icon'>&nbsp;</span>#{time}</span></span>";
+  return "<span class='white'>#{date}&nbsp#{time}</span>";
 
 batteryStatus: (battery, state) ->
   #returns a formatted html string current battery percentage, a representative icon and adds a lighting bolt if the
@@ -84,9 +85,10 @@ update: (output, domEl) ->
   volume = values[7]
 
   # create an HTML string to be displayed by the widget
-  htmlString = @getVolume(volume) + "<span>" + " | " + "</span>" +
-               @getWifiStatus(netStatus, netName, netIP) + "<span>" + " ⎢ " + "</span>" +
-               @batteryStatus(battery, isCharging) + "<span>" + " ⎢ " + "</span>" +
-               @timeAndDate(date,time)
+  # htmlString = @getVolume(volume) + "<span>" + " | " + "</span>" +
+  #              @getWifiStatus(netStatus, netName, netIP) + "<span>" + " ⎢ " + "</span>" +
+  #              @batteryStatus(battery, isCharging) + "<span>" + " ⎢ " + "</span>" +
+  #              @timeAndDate(date,time)
+  htmlString = @timeAndDate(date, time)
 
   $(domEl).find('.compstatus').html(htmlString)

@@ -4,12 +4,12 @@ render: (output) ->
   ""
 
 style: """
-  background-color: #2d2d2d;
-  width: 99.5%;
-  bottom: 3px;
-  right: 2px;
-  left 4px;
-  height: 24px
-  box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.40);
+  background-color: #252525;
+  width: 100%;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  height: 27px;
+  /*box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.40);*/
   z-index: -1
 """
