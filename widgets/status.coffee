@@ -78,8 +78,10 @@ getJabberUnread: (unread) ->
   return "<span class='jabber'><span class='#{clazz}'></span></span>"
 
 getMailUnread: (count) ->
-  clazz = "white far fa-envelope"
-  return "<span class='mail'><span class='#{clazz}'></span></span>"
+  if count > 0
+    return "<span class='mail'><span class='white fas fa-envelope'>&nbsp;</span><span class='white'>#{count}</span></span>"
+  else
+    return "<span class='mail'><span class='white far fa-envelope'></span></span>"
 
 update: (output, domEl) ->
   # split the output of the script
@@ -94,6 +96,7 @@ update: (output, domEl) ->
   netIP = values[6]
   volume = values[7]
   jabberUnread = values[8]
+  mailUnread = values[9]
 
   # create an HTML string to be displayed by the widget
   # htmlString = @getVolume(volume) + "<span>" + " | " + "</span>" +
@@ -102,7 +105,7 @@ update: (output, domEl) ->
   #              @timeAndDate(date,time)
   htmlString = @getJabberUnread(jabberUnread) +
                "<span>&nbsp;&nbsp;&nbsp;</span>" +
-               @getMailUnread(1) +
+               @getMailUnread(mailUnread) +
                "<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>" +
                @timeAndDate(date, time)
 
