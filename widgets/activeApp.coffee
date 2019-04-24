@@ -13,7 +13,7 @@ style: """
   width: 100%
   position: absolute
   margin: 0 auto
-  margin-top: 6px
+  margin-top: 2px
   text-align: center
   font: 12px "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
   color: #a5a5a5

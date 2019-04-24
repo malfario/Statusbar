@@ -9,7 +9,6 @@ style: """
   bottom: 0px;
   right: 0px;
   left: 0px;
-  height: 27px;
-  /*box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.40);*/
+  height: 20px;
   z-index: -1
 """

@@ -12,9 +12,8 @@ style: """
   color: #66d9ef
   font: 12px Hack
   left: 14px
-  bottom: 7px
+  bottom: 3px
   width:850px
-  height: 16px
 """
 
 cutWhiteSpace: (text) ->

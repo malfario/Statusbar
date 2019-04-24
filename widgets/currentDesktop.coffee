@@ -20,7 +20,6 @@ render: (output) ->
   spaces = values[0].split(' ')
 
   htmlString = """
-    <link rel="stylesheet" type="text/css" href="./assets/fontawesome-all.min.css">
     <div class="currentDesktop-container" data-count="#{spaces.length}">
       <ul>
   """
@@ -35,7 +34,7 @@ render: (output) ->
 
 style: """
   position: absolute
-  margin-top: 5px
+  margin-top: 2px
   color: #aaa
   font-weight: 700
 

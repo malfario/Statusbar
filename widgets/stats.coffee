@@ -9,9 +9,8 @@ render: (output) ->
 
 style: """
   right: 18px
-  bottom: 6px
+  bottom: 3px
   color: #66d9ef
-  height: 13
 """
 
 

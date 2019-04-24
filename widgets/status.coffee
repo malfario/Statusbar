@@ -8,9 +8,9 @@ render: (output) ->
   """
 
 style: """
+  position: absolute
+  margin: 0 auto
   right: 18px
-  top: 5px
-  height: 13
   .wifi
     font: 14px FontAwesome
     top: 1px
