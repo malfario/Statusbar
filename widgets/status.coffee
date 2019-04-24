@@ -70,8 +70,18 @@ getVolume: (str) ->
   else
     return "<span class='volume'>&nbsp;&nbsp;</span><span class='white'>#{str}&nbsp</span>"
 
-update: (output, domEl) ->
+getJabberUnread: (unread) ->
+  if unread > 0
+    clazz = "white fas fa-comment-dots"
+  else
+    clazz = "white far fa-comment"
+  return "<span class='jabber'><span class='#{clazz}'></span></span>"
 
+getMailUnread: (count) ->
+  clazz = "white far fa-envelope"
+  return "<span class='mail'><span class='#{clazz}'></span></span>"
+
+update: (output, domEl) ->
   # split the output of the script
   values = output.split('@')
 
@@ -83,12 +93,17 @@ update: (output, domEl) ->
   netName = values[5]
   netIP = values[6]
   volume = values[7]
+  jabberUnread = values[8]
 
   # create an HTML string to be displayed by the widget
   # htmlString = @getVolume(volume) + "<span>" + " | " + "</span>" +
   #              @getWifiStatus(netStatus, netName, netIP) + "<span>" + " ⎢ " + "</span>" +
   #              @batteryStatus(battery, isCharging) + "<span>" + " ⎢ " + "</span>" +
   #              @timeAndDate(date,time)
-  htmlString = @timeAndDate(date, time)
+  htmlString = @getJabberUnread(jabberUnread) +
+               "<span>&nbsp;&nbsp;&nbsp;</span>" +
+               @getMailUnread(1) +
+               "<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>" +
+               @timeAndDate(date, time)
 
   $(domEl).find('.compstatus').html(htmlString)
