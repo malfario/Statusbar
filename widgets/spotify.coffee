@@ -23,14 +23,20 @@ update: (output, domEl) ->
 
    values = output.split('@')
    artist = @cutWhiteSpace(values[0])
-   song = @cutWhiteSpace(values[1])
-   elapsed = values[2]
-   total = values[3]
-   status = @cutWhiteSpace(values[4])
+   album = @cutWhiteSpace(values[1])
+   song = @cutWhiteSpace(values[2])
+   elapsed = values[3]
+   total = values[4]
+   status = @cutWhiteSpace(values[5])
 
    if artist.length >= 30
      artist = artist.substring(0,29)
      artist = @cutWhiteSpace(artist)
+     song = song + "…"
+
+   if album.length >= 30
+     album = album.substring(0,29)
+     album = @cutWhiteSpace(album)
      song = song + "…"
 
    if song.length >= 30
@@ -47,7 +53,7 @@ update: (output, domEl) ->
    elapsed = elapsedSeconds / totalSeconds
 
    # Create mpdHtmlString
-   mpdHtmlString = "<span class='icon switch'></span><span class='white'>  #{artist} - #{song}&nbsp</span>"
+   mpdHtmlString = "<span class='icon switch'></span><span class='white'>  #{artist} [#{album}] - #{song}&nbsp</span>"
 
    emptySpace = (120 - artist.length - song.length - 3) / 2
 
