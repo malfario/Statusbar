@@ -32,15 +32,15 @@ update: (output, domEl) ->
    if artist.length >= 30
      artist = artist.substring(0,29)
      artist = @cutWhiteSpace(artist)
-     song = song + "…"
+     artist = artist + "…"
 
-   if album.length >= 30
-     album = album.substring(0,29)
+   if album.length >= 18
+     album = album.substring(0,17)
      album = @cutWhiteSpace(album)
-     song = song + "…"
+     album = album + "…"
 
-   if song.length >= 30
-     song = song.substring(0,29)
+   if song.length >= 18
+     song = song.substring(0,17)
      song = @cutWhiteSpace(song)
      song = song + "…"
 
@@ -77,17 +77,6 @@ update: (output, domEl) ->
      mpdHtmlString += " ● "
 
    mpdHtmlString += "</span>"
-
-
-   mpdHtmlString += "<span class='sicon prev'>&nbsp&nbsp</span>" + " "
-
-   if status == "playing."
-      mpdHtmlString += "<span class='sicon pause'></span>" + " "
-   else
-      mpdHtmlString += "<span class='sicon play'></span>" + " "
-
-   mpdHtmlString += "<span class='sicon next'></span>"
-
 
    $(domEl).find('.spotify').html(mpdHtmlString)
 
