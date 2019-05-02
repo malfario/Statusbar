@@ -53,8 +53,12 @@ update: (output, domEl) ->
    elapsed = elapsedSeconds / totalSeconds
 
    # Create mpdHtmlString
-   mpdHtmlString = "<span class='icon switch'></span><span class='white'>  #{artist} [#{album}] - #{song}&nbsp</span>"
+   if status == "playing."
+      mpdHtmlString = "<span class='icon switch'></span>"
+   else
+      mpdHtmlString = "<span class='sicon pause'></span>"
 
+   mpdHtmlString += " <span class='white'>  #{artist} [#{album}] - #{song}&nbsp</span>"
    emptySpace = (120 - artist.length - song.length - 3) / 2
 
    elapsedCounter = parseInt(elapsed * emptySpace)
