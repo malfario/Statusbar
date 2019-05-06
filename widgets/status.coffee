@@ -10,6 +10,7 @@ render: (output) ->
 style: """
   position: absolute
   margin: 0 auto
+  padding-left: 10px
   right: 18px
   .wifi
     font: 14px FontAwesome
