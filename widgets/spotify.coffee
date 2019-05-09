@@ -1,10 +1,9 @@
-command: "sh ./scripts/spotify.sh"
+command: "sh ./statusbar.widgets/scripts/spotify.sh"
 
 refreshFrequency: 10000
 
 render: (output) ->
   """
-    <link rel="stylesheet" type="text/css" href="/nerdbar.widget/colors.css" />
     <div class='spotify'></div>
   """
 

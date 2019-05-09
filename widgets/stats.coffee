@@ -1,4 +1,4 @@
-command: "sh ./scripts/stats.sh"
+command: "sh ./statusbar.widgets/scripts/stats.sh"
 
 refreshFrequency: 10000 # ms
 

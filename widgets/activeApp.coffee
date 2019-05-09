@@ -1,11 +1,11 @@
-command: "sh ./scripts/getActiveApp.sh"
+command: "sh ./statusbar.widgets/scripts/getActiveApp.sh"
 
 refreshFrequency: 1000
 
 render: (output) ->
   """
-    <link rel="stylesheet" type="text/css" href="./assets/colors.css">
-    <link rel="stylesheet" type="text/css" href="./assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="./statusbar.widgets/assets/colors.css">
+    <link rel="stylesheet" type="text/css" href="./statusbar.widgets/assets/fontawesome/css/all.min.css">
     <div class="activeApp"></div>
   """
 
